@@ -1,0 +1,147 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/brianc/node-domain-middleware#readme">express-domain-middleware (v0.1.0)</a>
+</h1>
+<h4>wrap express request/response with node domains</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.express-domain-middleware">module express-domain-middleware</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.express-domain-middleware.express-domain-middleware">
+            function <span class="apidocSignatureSpan"></span>express-domain-middleware
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.express-domain-middleware.id">
+            function <span class="apidocSignatureSpan">express-domain-middleware.</span>id
+            <span class="apidocSignatureSpan">(req)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.express-domain-middleware" id="apidoc.module.express-domain-middleware">module express-domain-middleware</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.express-domain-middleware.express-domain-middleware" id="apidoc.element.express-domain-middleware.express-domain-middleware">
+        function <span class="apidocSignatureSpan"></span>express-domain-middleware
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">express-domain-middleware = function (req, res, next) {
+  var domain = createDomain();
+  domain.id = domainMiddleware.id(req);
+  domain.add(req);
+  domain.add(res);
+  domain.run(function() {
+    next();
+  });
+  domain.on('error', function(e) {
+    next(e);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.express-domain-middleware.id" id="apidoc.element.express-domain-middleware.id">
+        function <span class="apidocSignatureSpan">express-domain-middleware.</span>id
+        <span class="apidocSignatureSpan">(req)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">id = function (req) {
+  return new Date().getTime() + (count++);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+### express-domain-middleware api
+
+#### var domainMiddleware = require('express-domain-middleware');
+
+#### domainMiddleware = function(req, res, next)
+
+Exports a function matching the signature of express middleware.  Binds incoming request &amp; response from express to a new domain
+.  Assigns the domain a unique id by calling `domainMiddleware.<span class="apidocCodeKeywordSpan">id</span>(req)`.
+
+If the domain emits an error event, `domainMiddleware` will call `next(err)` with the error event from the domain.  This allows
+existing express specific error handling middleware to
+function as if the error was hanlded by your application code.  Allow me to demonstrate with an example:
+
+```js
+///old-school
+app.get('/error', function(req, res, next) {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
